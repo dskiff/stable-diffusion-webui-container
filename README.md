@@ -4,6 +4,8 @@ Run [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-w
 
 ## How?
 
+You'll need a way to run containers (e.g. Docker, podman, k8s, etc), and you'll need to be able to pass your GPU to the container (e.g. the [NVIDIA  Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html))
+
 Checkout the docker-compose as a simple example, or
 
 ```
