@@ -1,0 +1,25 @@
+services:
+  webui:
+    container_name: webui
+    build: .
+    ports:
+      - 7860:7860
+    volumes:
+      - ./data/embeddings:/opt/webui/embeddings
+      - ./data/models:/opt/webui/models
+      - ./data/config/extensions:/opt/webui/extensions
+      - ./data/outputs:/opt/webui/outputs
+      - ./data/log:/opt/webui/log
+      # - ./data/config/config.json:/opt/webui/config.json
+      # - ./data/config/ui_config.json:/opt/webui/ui_config.json
+      # - ./data/config/config_states:/opt/webui/config_states
+    restart: unless-stopped
+    stop_signal: SIGKILL
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [compute, utility]
