@@ -19,7 +19,12 @@ ENV ROOT=/opt/webui
 
 WORKDIR ${ROOT}
 
-RUN mkdir -p ${ROOT} && chown -R ubuntu:ubuntu ${ROOT}
+RUN mkdir -p ${ROOT} && chown -R ubuntu:ubuntu ${ROOT} && \
+  # Prevent pip cacheing to mitigate some layer bloat
+  cat << EOF > /etc/pip.conf \
+  [global] \
+  no-cache-dir = True \
+  EOF
 
 USER ubuntu
 
